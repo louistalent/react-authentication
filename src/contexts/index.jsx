@@ -7,10 +7,10 @@ import React, {
     useEffect,
 } from "react";
 
-const BlockchainContext = createContext();
+const GlobalContext = createContext();
 
-export function useBlockchainContext() {
-    return useContext(BlockchainContext);
+export function useGlobalContext() {
+    return useContext(GlobalContext);
 }
 
 function reducer(state, { type, payload }) {
@@ -51,7 +51,7 @@ export default function Provider({ children }) {
 
 
     return (
-        <BlockchainContext.Provider
+        <GlobalContext.Provider
             value={useMemo(
                 () => [
                     state,
@@ -64,6 +64,6 @@ export default function Provider({ children }) {
             )}
         >
             {children}
-        </BlockchainContext.Provider>
+        </GlobalContext.Provider>
     );
 }

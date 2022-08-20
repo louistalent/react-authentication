@@ -4,7 +4,7 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { configureStore } from '@reduxjs/toolkit';
-import ContextProvider, { useBlockchainContext } from "./contexts";
+import ContextProvider, { useGlobalContext } from "./contexts";
 require('dotenv').config();
 
 ReactDOM.render(

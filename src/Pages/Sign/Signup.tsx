@@ -17,7 +17,7 @@ const Signup = () => {
 
     const history = useHistory();
 
-    const responseGoogle = (response) => {
+    const responseGoogle = (response: any) => {
         let { email, name, googleId, imageUrl } = response.profileObj;
         console.log('response.profileObj : \n \n \n \n \n ');
         console.log(response.profileObj)
