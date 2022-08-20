@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 
 import { GoogleLogin } from "react-google-login";
-import { Link, useHistory } from "react-router-dom";
-
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import './Sign.scss';
-import { BsArrowUp, BsArrowDown, BsChevronDown, BsChevronCompactUp, BsChevronLeft, BsChevronRight } from "react-icons/bs";
-import { SiApple } from "react-icons/si";
-import { RiGooglePlayFill, RiStarSFill } from "react-icons/ri";
+
+const proxy = process.env.REACT_APP_ENDPOINT || '';
 
 const Signup = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPassword] = useState('');
     const [imageUrl, setImageUrl] = useState();
 
     const history = useHistory();
@@ -39,8 +39,22 @@ const Signup = () => {
         //     }
         // });
     };
-    const requestSignup = () => {
+    const requestSignup = async () => {
         alert('signup')
+        // registryapi: /api/registry
+        // {
+        //     name: "xxx",
+        //     email: "xxx",
+        //     password: "xxx"
+        // }
+
+        let res = await axios.post(proxy + '/api/registry', {
+            name,
+            email,
+            password
+        });
+        toast('Success')
+        // 
 
         // history.push({
         //     pathname: "/signup",
@@ -89,7 +103,7 @@ const Signup = () => {
                                 <div className='w10'>
                                     <div className='grey-color' style={{ fontSize: '10pxs' }}>Password</div>
                                     <div>
-                                        <input onChange={(e: any) => setPass(e.target.value)} className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={pass} />
+                                        <input onChange={(e: any) => setPassword(e.target.value)} className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={password} />
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +119,12 @@ const Signup = () => {
                             </div>
                             <div className='mt2' style={{ border: '1px solid #6A6A6A' }}></div>
                             <div className='mt2 justify'>
+                                {/* 
+                                    type of responseGoogle = function
+                                    roll of responseGoogle = send data of google account
+                                    cookiePolicy           = fixed value for react-google-login npm : single_host_origin
+                                */}
+
                                 <GoogleLogin
                                     className="google-sign-button"
                                     style={{ padding: '5px !important', boxShadow: 'none' }}

@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { GoogleLogin } from "react-google-login";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import './Sign.scss';
 
+const proxy = process.env.REACT_APP_ENDPOINT || '';
+
 const Signin = () => {
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
+    const [password, setPassword] = useState('');
     const [imageUrl, setImageUrl] = useState();
 
     const history = useHistory();
@@ -30,11 +34,20 @@ const Signin = () => {
         //     }
         // });
     };
-    const requestSignin = () => {
+    const requestSignin = async () => {
         alert('signin')
-
+        // login api: /api/login
+        // {
+        //     email: "xxx",
+        //     password: "xxx",
+        // }
+        let res = await axios.post(proxy + '/api/login', {
+            email,
+            password
+        });
+        toast('Success')
         // history.push({
-        //     pathname: "/signup",
+        //     pathname: "/nextpage",
         //     // state: {
         //     //     personDetail: { ...personDetail }
         //     // }
@@ -72,7 +85,7 @@ const Signin = () => {
                                 <div className='w10'>
                                     <div className='grey-color' style={{ fontSize: '10pxs' }}>Password</div>
                                     <div>
-                                        <input onChange={(e: any) => setPass(e.target.value)} className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={pass} />
+                                        <input onChange={(e: any) => setPassword(e.target.value)} className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={password} />
                                     </div>
                                 </div>
                             </div>
