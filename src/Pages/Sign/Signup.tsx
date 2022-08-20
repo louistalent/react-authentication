@@ -39,6 +39,15 @@ const Signup = () => {
         //     }
         // });
     };
+    const requestSignup = () => {
+
+        history.push({
+            pathname: "/signup",
+            // state: {
+            //     personDetail: { ...personDetail }
+            // }
+        });
+    }
 
     return <Layout >
         <section className='exchange-section normal-bg'>
