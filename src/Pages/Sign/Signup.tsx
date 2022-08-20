@@ -40,13 +40,14 @@ const Signup = () => {
         // });
     };
     const requestSignup = () => {
+        alert('signup')
 
-        history.push({
-            pathname: "/signup",
-            // state: {
-            //     personDetail: { ...personDetail }
-            // }
-        });
+        // history.push({
+        //     pathname: "/signup",
+        //     // state: {
+        //     //     personDetail: { ...personDetail }
+        //     // }
+        // });
     }
 
     return <Layout >
@@ -99,7 +100,7 @@ const Signup = () => {
                             </div>
                             <div className='mt2'>
                                 <div className='justify-s'>
-                                    <button className='btn primary-bg w10'>Create Account</button>
+                                    <button onClick={() => requestSignup()} className='btn primary-bg w10'>Create Account</button>
                                 </div>
                             </div>
                             <div className='mt2' style={{ border: '1px solid #6A6A6A' }}></div>

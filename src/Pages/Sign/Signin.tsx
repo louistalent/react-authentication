@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { GoogleLogin } from "react-google-login";
 import { Link, useHistory } from "react-router-dom";
@@ -6,6 +6,9 @@ import { Link, useHistory } from "react-router-dom";
 import './Sign.scss';
 
 const Signin = () => {
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
+    const [imageUrl, setImageUrl] = useState();
 
     const history = useHistory();
 
@@ -27,9 +30,18 @@ const Signin = () => {
         //     }
         // });
     };
+    const requestSignin = () => {
+        alert('signin')
+
+        // history.push({
+        //     pathname: "/signup",
+        //     // state: {
+        //     //     personDetail: { ...personDetail }
+        //     // }
+        // });
+    }
 
     return <Layout className="home" >
-
         <section className='exchange-section normal-bg'>
             <div className='pb4 mo-mt0-desk-mt4'>
                 <div className='row ml0 mr0'>
@@ -52,7 +64,7 @@ const Signin = () => {
                                 <div className='w10'>
                                     <div className='grey-color' style={{ fontSize: '10pxs' }}>Email Address</div>
                                     <div>
-                                        <input className='sign-input' placeholder='ex: louistalent@gmail.com' style={{ fontSize: '16px' }} type="input" defaultValue={'name'} />
+                                        <input onChange={(e: any) => setEmail(e.target.value)} className='sign-input' placeholder='ex: louistalent@gmail.com' style={{ fontSize: '16px' }} type="input" defaultValue={email} />
                                     </div>
                                 </div>
                             </div>
@@ -60,10 +72,11 @@ const Signin = () => {
                                 <div className='w10'>
                                     <div className='grey-color' style={{ fontSize: '10pxs' }}>Password</div>
                                     <div>
-                                        <input className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={''} />
+                                        <input onChange={(e: any) => setPass(e.target.value)} className='sign-input' placeholder='' style={{ fontSize: '16px' }} type="password" defaultValue={pass} />
                                     </div>
                                 </div>
                             </div>
+
                             <div className='mt2'>
                                 <div className='justify-s'>
                                     <div className='grey-color'>Your password should be at least 8 characters, and include 1 upper case letter, 1 lower case letter and 1 number.</div>
@@ -71,7 +84,7 @@ const Signin = () => {
                             </div>
                             <div className='mt2'>
                                 <div className='justify-s'>
-                                    <button className='btn primary-bg w10'>Login Account</button>
+                                    <button onClick={() => requestSignin()} className='btn primary-bg w10'>Login Account</button>
                                 </div>
                             </div>
                             <div className='mt2' style={{ border: '1px solid #6A6A6A' }}></div>
